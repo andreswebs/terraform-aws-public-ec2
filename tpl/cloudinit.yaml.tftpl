@@ -1,0 +1,19 @@
+#cloud-config
+
+packages:
+  - amazon-ec2-utils
+
+runcmd:
+  - VOLUME_NAMES=$(find /dev | grep -i 'nvme[0-21]n1$')
+  - |
+    for VOLUME in $${VOLUME_NAMES}; do
+      ALIAS="/dev/$(ebsnvme-id -u "$${VOLUME}")"
+      [ ! -z $${ALIAS} ] && { ln -s "$${VOLUME}" "$${ALIAS}"; }
+    done
+  %{~ for v in volumes ~}
+  - blkid $(readlink -f ${v.device_name}) || mkfs.ext4 -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard ${v.device_name}
+  - fsck.ext4 -tvy ${v.device_name}
+  - mkdir -p ${v.mount_path}
+  - mount -t ext4 -O discard,default ${v.device_name} ${v.mount_path}
+  - chown -R ${user}:${group} ${v.mount_path}
+  %{~ endfor ~}
