@@ -56,6 +56,7 @@ module "instance" {
 | Name | Description |
 |------|-------------|
 | <a name="output_instance"></a> [instance](#output\_instance) | n/a |
+| <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
 
 ## Providers
 
