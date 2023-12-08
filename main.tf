@@ -94,8 +94,6 @@ data "cloudinit_config" "this" {
   part {
     content_type = "text/cloud-config"
     content = templatefile("${path.module}/tpl/cloudinit.yaml.tftpl", {
-      user    = "ubuntu"
-      group   = "ubuntu"
       volumes = var.ebs_volumes
     })
   }
@@ -118,6 +116,8 @@ resource "aws_instance" "this" {
   }
 
   user_data_base64 = data.cloudinit_config.this.rendered
+
+  user_data_replace_on_change = var.user_data_replace_on_change
 
   enclave_options {
     enabled = var.enclave_enabled

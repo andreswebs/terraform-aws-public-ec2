@@ -65,5 +65,12 @@ variable "ebs_volumes" {
     final_snapshot = optional(bool, false)
     snapshot_id    = optional(string)
     mount_path     = string
+    uid            = optional(number, 1000)
+    gid            = optional(number, 1000)
   }))
+}
+
+variable "user_data_replace_on_change" {
+  type = bool
+  default = true
 }

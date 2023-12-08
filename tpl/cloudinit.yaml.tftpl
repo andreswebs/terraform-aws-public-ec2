@@ -15,5 +15,5 @@ runcmd:
   - fsck.ext4 -tvy ${v.device_name}
   - mkdir -p ${v.mount_path}
   - mount -t ext4 -O discard,default ${v.device_name} ${v.mount_path}
-  - chown -R ${user}:${group} ${v.mount_path}
+  - chown -R ${v.uid}:${v.gid} ${v.mount_path}
   %{~ endfor ~}

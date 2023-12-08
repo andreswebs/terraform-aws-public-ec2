@@ -30,7 +30,7 @@ module "instance" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_ami_id"></a> [ami\_id](#input\_ami\_id) | n/a | `string` | `null` | no |
 | <a name="input_cidr_whitelist"></a> [cidr\_whitelist](#input\_cidr\_whitelist) | n/a | `list(string)` | n/a | yes |
-| <a name="input_ebs_volumes"></a> [ebs\_volumes](#input\_ebs\_volumes) | n/a | <pre>list(object({<br>    name           = optional(string)<br>    device_name    = string<br>    size           = number<br>    type           = optional(string, "gp3")<br>    encrypted      = optional(bool, true)<br>    final_snapshot = optional(bool, false)<br>    snapshot_id    = optional(string)<br>    mount_path     = string<br>  }))</pre> | n/a | yes |
+| <a name="input_ebs_volumes"></a> [ebs\_volumes](#input\_ebs\_volumes) | n/a | <pre>list(object({<br>    name           = optional(string)<br>    device_name    = string<br>    size           = number<br>    type           = optional(string, "gp3")<br>    encrypted      = optional(bool, true)<br>    final_snapshot = optional(bool, false)<br>    snapshot_id    = optional(string)<br>    mount_path     = string<br>    uid            = optional(number, 1000)<br>    gid            = optional(number, 1000)<br>  }))</pre> | n/a | yes |
 | <a name="input_enclave_enabled"></a> [enclave\_enabled](#input\_enclave\_enabled) | n/a | `bool` | `false` | no |
 | <a name="input_instance_termination_disable"></a> [instance\_termination\_disable](#input\_instance\_termination\_disable) | n/a | `bool` | `false` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | `"t3a.medium"` | no |
@@ -41,6 +41,7 @@ module "instance" {
 | <a name="input_root_volume_size"></a> [root\_volume\_size](#input\_root\_volume\_size) | n/a | `number` | `0` | no |
 | <a name="input_ssh_key_name"></a> [ssh\_key\_name](#input\_ssh\_key\_name) | n/a | `string` | `null` | no |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | n/a | `string` | n/a | yes |
+| <a name="input_user_data_replace_on_change"></a> [user\_data\_replace\_on\_change](#input\_user\_data\_replace\_on\_change) | n/a | `bool` | `true` | no |
 
 ## Modules
 
