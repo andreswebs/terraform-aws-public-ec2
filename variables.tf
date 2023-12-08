@@ -12,6 +12,11 @@ variable "root_volume_encrypted" {
   default = true
 }
 
+variable "root_volume_type" {
+  type    = string
+  default = "gp3"
+}
+
 variable "root_volume_size" {
   type    = number
   default = 0

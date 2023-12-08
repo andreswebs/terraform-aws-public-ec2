@@ -111,6 +111,7 @@ resource "aws_instance" "this" {
   root_block_device {
     delete_on_termination = var.root_volume_delete
     encrypted             = var.root_volume_encrypted
+    volume_type           = var.root_volume_type
     volume_size           = local.root_volume_size
     kms_key_id            = var.kms_key_id
   }
